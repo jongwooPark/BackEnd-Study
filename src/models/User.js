@@ -20,5 +20,13 @@ class User {
       return { success: false, msg: "존재하지 않는 아이디입니다." };
     }
   }
+
+  register() {
+
+   // return { success: true, msg: " 가입성공" };
+    return { success: false, msg: " 가입 실패" };
+
+
+  }
 }
 module.exports = User;
