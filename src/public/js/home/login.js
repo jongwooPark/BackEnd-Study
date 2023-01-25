@@ -27,7 +27,7 @@ function login (){
         if(res.sucess){
                 location.href = "/";
         } else {
-            alert(res.msg)
+            alert("로그인 실패")
         }
     })
     .catch((err)=>{

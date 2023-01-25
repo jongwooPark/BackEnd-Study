@@ -1,3 +1,7 @@
+
+const UserStorage = require("../../models/UserStorage");
+
+
 const output = {
   index: (req, res) => {
     res.render("home/index");
@@ -18,37 +22,41 @@ const output = {
   },
 };
 
-const users = {
-  id: ["park", "ghfhg", "bnvh"],
-  password: ["1234", "765675", "897987"],
-};
+
 const process = {
   login: (req, res) => {
 
     const id = req.body.id;
     const password = req.body.password;
 
-   
+    const response = {};
+    //const userStorage =  new UserStorage();
+    //console.log("kk:", UserStorage.getUsers());
+
+    const  users = UserStorage.getUsers("id", "password", "names");
+
+
+
     if (users.id.includes(id)) {
       const idx = users.id.indexOf(id);
 
       if (password === users.password[idx]) {
+
+        response.success = true;
         return res.json({
           sucess: true,
         });
       } else {
-        return res.json({
-          sucess: false,
-          msg : "비밀번호가 틀립니다."
-        })    
+        return res.json(response)    
       }
     } else {
-      return res.json({
-        sucess: false,
-        msg : "계정이 없습니다."
-      })
+
+      response.success = false;
+      return res.json(response)
     }
+
   },
+  
 };
 
 module.exports = {
