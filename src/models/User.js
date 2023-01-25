@@ -24,7 +24,9 @@ class User {
   register() {
 
    // return { success: true, msg: " 가입성공" };
-    return { success: false, msg: " 가입 실패" };
+   
+   UserStorage.save(this.body);
+   //return { success: false, msg: " 가입 실패" };
 
 
   }

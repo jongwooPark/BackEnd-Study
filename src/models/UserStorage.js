@@ -38,5 +38,18 @@ class UserStorage {
 
     return userInfo;
       }
+
+
+      static save(body){
+        const users = this.#users;
+        users.id.push(body.id);
+        users.password.push(body.password);
+        users.names.push(body.name);
+
+
+    
+        console.log(users);
+
+      }
 }
 module.exports = UserStorage;
