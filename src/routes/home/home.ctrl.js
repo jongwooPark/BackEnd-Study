@@ -1,6 +1,4 @@
-
-const UserStorage = require("../../models/UserStorage");
-
+const User = require("../../models/User");
 
 const output = {
   index: (req, res) => {
@@ -22,41 +20,12 @@ const output = {
   },
 };
 
-
 const process = {
   login: (req, res) => {
-
-    const id = req.body.id;
-    const password = req.body.password;
-
-    const response = {};
-    //const userStorage =  new UserStorage();
-    //console.log("kk:", UserStorage.getUsers());
-
-    const  users = UserStorage.getUsers("id", "password", "names");
-
-
-
-    if (users.id.includes(id)) {
-      const idx = users.id.indexOf(id);
-
-      if (password === users.password[idx]) {
-
-        response.success = true;
-        return res.json({
-          sucess: true,
-        });
-      } else {
-        return res.json(response)    
-      }
-    } else {
-
-      response.success = false;
-      return res.json(response)
-    }
-
+    const user = new User(req.body);
+    const response = user.login();
+    return res.json(response);
   },
-  
 };
 
 module.exports = {
