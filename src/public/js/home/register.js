@@ -9,18 +9,20 @@ console.log("kkkkk");
 registerBtn.addEventListener("click", register);
 
 function register() {
+  if (!id.value) return alert("아이디를 입력해 주세요.");
+  console.log(pass.value, rePass.values);
+  if (pass.value !== rePass.value)
+    return alert("비밀번호가 일치하지 않습니다.");
+
   const req = {
     id: id.value,
     password: pass.value,
-    name : name.value,
-    rePass : rePass.value,
-
-
+    name: name.value,
+    rePass: rePass.value,
   };
 
   console.log(req);
 
- 
   fetch("/register", {
     method: "POST",
     headers: {
@@ -40,5 +42,4 @@ function register() {
     .catch((err) => {
       console.error(new Error("로그인 중 에러 발생"));
     });
-
 }
